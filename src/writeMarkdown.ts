@@ -1,10 +1,10 @@
 /*
  * @Author: chenzihan
  * @Date: 2022-09-26 11:34:33
- * @LastEditTime: 2022-09-27 16:05:16
+ * @LastEditTime: 2022-09-27 17:43:55
  * @LastEditors: chenzihan
  * @Description:
- * @FilePath: \checkCommit\src\writeMarkdown.ts
+ * @FilePath: \commit-msg-lint\src\writeMarkdown.ts
  */
 import { writeFileSync, existsSync, mkdirSync } from 'fs';
 import { ActivityResult, CommitMsgResult } from './type';
@@ -42,7 +42,7 @@ function getCommitMsgResultText(commitMsgResult: CommitMsgResult) {
   const listText = commitMsgResult.list
     .map(
       (item) =>
-        `${item.date}【${item.msg}】（${item.legal ? '通过' : '不通过'}${
+        `${item.date} ${item.msg}（${item.legal ? '通过' : '不通过'}${
           item.error ? '：' + item.error : ''
         }）`
     )
