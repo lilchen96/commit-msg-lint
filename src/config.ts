@@ -1,7 +1,7 @@
 /*
  * @Author: chenzihan
  * @Date: 2022-09-26 10:39:50
- * @LastEditTime: 2022-09-28 15:04:42
+ * @LastEditTime: 2022-09-28 17:52:20
  * @LastEditors: chenzihan
  * @Description:
  * @FilePath: \commit-msg-lint\src\config.ts
@@ -15,7 +15,7 @@ export const COMMIT_TIME_RANGE = '5_year';
 // 提交记录通过率目标
 export const COMMIT_LEGAL_TARGET = 0.75;
 
-// 自定义git commit msg检测方法,入参git commit msg的文本信息，需要返回一个对象{error,legal}，error：为错误的文字提示；legal：是否通过检测
+// 自定义git commit msg检测方法,入参为git commit msg的文本信息，需要返回一个对象{error,legal}，error：为错误的文字提示；legal：是否通过检测
 export const CHECK_FUN = (
   msg: string
 ): {

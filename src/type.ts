@@ -1,16 +1,23 @@
 /*
  * @Author: chenzihan
  * @Date: 2022-09-26 11:43:55
- * @LastEditTime: 2022-09-26 17:54:29
+ * @LastEditTime: 2022-09-28 17:25:21
  * @LastEditors: chenzihan
  * @Description:
- * @FilePath: \checkCommit\src\type.ts
+ * @FilePath: \commit-msg-lint\src\type.ts
  */
-export type ActivityResult = {
+export type Project = {
+  name: string;
+  url: string;
+  link?: string;
+};
+
+export type ActivityResultItem = {
   branch: string;
   lastDate: string;
   isActive: boolean;
 };
+export type ActivityResult = ActivityResultItem[];
 
 export type LogList = {
   date: string;

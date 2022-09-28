@@ -1,7 +1,7 @@
 /*
  * @Author: chenzihan
  * @Date: 2022-09-26 11:34:33
- * @LastEditTime: 2022-09-27 17:43:55
+ * @LastEditTime: 2022-09-28 16:23:33
  * @LastEditors: chenzihan
  * @Description:
  * @FilePath: \commit-msg-lint\src\writeMarkdown.ts
@@ -12,7 +12,7 @@ import { ACTIVE_DAYS, COMMIT_LEGAL_TARGET } from './config';
 import path from 'path';
 
 export function getContent(
-  activityResult: ActivityResult[],
+  activityResult: ActivityResult,
   commitMsgResult: CommitMsgResult
 ) {
   const activityResultText = getActivityResultText(activityResult);
@@ -20,7 +20,7 @@ export function getContent(
   return `活跃性结果\n${activityResultText}\n\n提交记录结果\n${commitMsgResultText}`;
 }
 
-function getActivityResultText(activityResult: ActivityResult[]) {
+function getActivityResultText(activityResult: ActivityResult) {
   const activeArr = activityResult.filter((item) => item.isActive);
   const unActiveArr = activityResult.filter((item) => !item.isActive);
   const conclusion = activeArr.length > 0 ? '项目活跃' : '项目废弃';
