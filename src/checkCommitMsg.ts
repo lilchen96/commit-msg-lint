@@ -1,10 +1,10 @@
 /*
  * @Author: chenzihan
  * @Date: 2022-09-26 16:02:39
- * @LastEditTime: 2022-09-27 16:47:22
+ * @LastEditTime: 2022-09-28 14:04:42
  * @LastEditors: chenzihan
  * @Description:
- * @FilePath: \checkCommit\src\checkCommitMsg.ts
+ * @FilePath: \commit-msg-lint\src\checkCommitMsg.ts
  */
 import { exec } from 'child_process';
 import { promisify } from 'util';
@@ -14,6 +14,7 @@ import {
   COMMIT_MAX_NUM,
   COMMIT_LEGAL_TARGET,
   COMMIT_TIME_RANGE,
+  CHECK_FUN,
 } from './config';
 
 const execPromise = promisify(exec);
@@ -45,39 +46,10 @@ export async function checkCommitMsg(branch: string) {
         !item.msg.startsWith('Merge branch') && !item.msg.startsWith('Update ')
     )
     .map((item) => {
-      const obj = {
+      return {
         ...item,
-        error: '',
-        legal: true,
+        ...CHECK_FUN(item.msg),
       };
-      const regex = /([a-z]+)(\(.+\))?: (.+)/;
-      const regexAns = regex.exec(item.msg);
-      let type = '';
-      let module = '';
-      let value = '';
-      let errorList = [];
-      if (regexAns) {
-        type = regexAns[1] || '';
-        module = regexAns[2]?.substring(1, regexAns[2].length - 1) || '';
-        value = regexAns[3] || '';
-        if (!type) {
-          errorList.push('缺少类型');
-          obj.legal = obj.legal && false;
-        }
-        if (!module) {
-          errorList.push('缺少模块');
-          obj.legal = obj.legal && true;
-        }
-        if (!value) {
-          errorList.push('缺少内容');
-          obj.legal = obj.legal && false;
-        }
-      } else {
-        errorList.push('缺少类型');
-        obj.legal = false;
-      }
-      obj.error = errorList.join();
-      return obj;
     });
   if (logList.length > COMMIT_MAX_NUM) {
     logList = logList.slice(0, COMMIT_MAX_NUM);
