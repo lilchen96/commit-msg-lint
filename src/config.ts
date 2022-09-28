@@ -1,7 +1,7 @@
 /*
  * @Author: chenzihan
  * @Date: 2022-09-26 10:39:50
- * @LastEditTime: 2022-09-28 14:04:58
+ * @LastEditTime: 2022-09-28 15:04:42
  * @LastEditors: chenzihan
  * @Description:
  * @FilePath: \commit-msg-lint\src\config.ts
@@ -78,7 +78,7 @@ export const PROJECT_LIST = [
     name: 'vite-vue3-typescript-template',
     url: 'https://github.com/lilchen96/vite-vue3-typescript-template.git',
     link: 'https://github.com/lilchen96/vite-vue3-typescript-template',
-  },
+  }
 ];
 
 // 当前检测的项目的name

@@ -1,7 +1,7 @@
 /*
  * @Author: chenzihan
  * @Date: 2022-09-26 16:02:39
- * @LastEditTime: 2022-09-28 14:04:42
+ * @LastEditTime: 2022-09-28 15:00:30
  * @LastEditors: chenzihan
  * @Description:
  * @FilePath: \commit-msg-lint\src\checkCommitMsg.ts
@@ -43,7 +43,7 @@ export async function checkCommitMsg(branch: string) {
     })
     .filter(
       (item) =>
-        !item.msg.startsWith('Merge branch') && !item.msg.startsWith('Update ')
+        !item.msg.startsWith('Merge ') && !item.msg.startsWith('Update ')
     )
     .map((item) => {
       return {
