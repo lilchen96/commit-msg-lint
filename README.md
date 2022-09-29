@@ -2,10 +2,10 @@
 
 git commit msg 检测器，自动生成git提交记录的检测结果。
 
-####1. 安装依赖：
+#### 1. 安装依赖：
 `pnpm install`
 
-####2. 自定义配置：
+#### 2. 自定义配置：
 修改`src/config.ts` 的配置。包括：
 
 | 配置项   | 类型     | 备注 |
@@ -19,7 +19,7 @@ git commit msg 检测器，自动生成git提交记录的检测结果。
 | PROJECT_NAME  | string  |需要检测的项目名（配置模式检测才生效）|
 
 
-####2. 检测：
+#### 2. 检测：
 
 ##### 配置模式：
 配置`PROJECT_LIST`和`PROJECT_NAME`后，运行`pnpm run dev`，生成对应的检测结果。
