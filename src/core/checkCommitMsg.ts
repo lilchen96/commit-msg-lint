@@ -1,21 +1,21 @@
 /*
  * @Author: chenzihan
  * @Date: 2022-09-26 16:02:39
- * @LastEditTime: 2022-09-28 15:00:30
+ * @LastEditTime: 2022-10-17 15:42:12
  * @LastEditors: chenzihan
  * @Description:
- * @FilePath: \commit-msg-lint\src\checkCommitMsg.ts
+ * @FilePath: \commit-msg-lint\src\core\checkCommitMsg.ts
  */
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import dayjs from 'dayjs';
-import { LogList } from './type';
+import { LogList } from '../type';
 import {
   COMMIT_MAX_NUM,
   COMMIT_LEGAL_TARGET,
   COMMIT_TIME_RANGE,
   CHECK_FUN,
-} from './config';
+} from '../config';
 
 const execPromise = promisify(exec);
 const timeRange: number = Number(COMMIT_TIME_RANGE.split('_')[0]);
@@ -28,7 +28,7 @@ export async function checkCommitMsg(branch: string) {
     .add(-1, 'day')
     .format('YYYY-MM-DD');
   const { stdout: allLogList } = await execPromise(
-    `git log --pretty=format:"%ad${separator}%s" ${branch} --since='${since}'`
+    `git log --pretty=format:"%ad${separator}%s" "${branch}" --since='${since}'`
   );
   let logList = allLogList
     .split('\n')

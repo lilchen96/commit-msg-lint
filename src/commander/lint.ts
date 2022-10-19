@@ -1,20 +1,15 @@
 /*
  * @Author: chenzihan
- * @Date: 2022-09-28 16:03:40
- * @LastEditTime: 2022-09-28 17:28:15
+ * @Date: 2022-10-17 15:39:13
+ * @LastEditTime: 2022-10-19 10:20:09
  * @LastEditors: chenzihan
  * @Description:
- * @FilePath: \commit-msg-lint\src\commander.ts
+ * @FilePath: \commit-msg-lint\src\commander\lint.ts
  */
-import { program } from 'commander';
 import inquirer from 'inquirer';
-import { checkProject } from './checkProject';
+import { generateMd } from '../generateMd/generate';
 
-program.command('lint').action(lintCallback);
-
-program.parse(process.argv);
-
-async function lintCallback() {
+export async function lintCallback() {
   const { url } = await inquirer.prompt([
     {
       type: 'input',
@@ -44,16 +39,10 @@ async function lintCallback() {
         return input ? true : '不能为空！';
       },
     },
-    {
-      type: 'input',
-      name: 'link',
-      message: '请输入项目网页链接（选填）：',
-    },
   ]);
   console.log(name, url, link);
-  checkProject({
+  generateMd({
     name,
     url,
-    link,
   });
 }

@@ -1,7 +1,7 @@
 /*
  * @Author: chenzihan
  * @Date: 2022-09-26 11:43:55
- * @LastEditTime: 2022-09-28 17:25:21
+ * @LastEditTime: 2022-10-19 10:11:52
  * @LastEditors: chenzihan
  * @Description:
  * @FilePath: \commit-msg-lint\src\type.ts
@@ -9,7 +9,6 @@
 export type Project = {
   name: string;
   url: string;
-  link?: string;
 };
 
 export type ActivityResultItem = {

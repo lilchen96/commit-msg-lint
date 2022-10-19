@@ -1,15 +1,16 @@
 /*
  * @Author: chenzihan
  * @Date: 2022-09-26 11:34:33
- * @LastEditTime: 2022-09-28 16:23:33
+ * @LastEditTime: 2022-10-19 14:19:57
  * @LastEditors: chenzihan
  * @Description:
- * @FilePath: \commit-msg-lint\src\writeMarkdown.ts
+ * @FilePath: \commit-msg-lint\src\generateMd\writeMarkdown.ts
  */
 import { writeFileSync, existsSync, mkdirSync } from 'fs';
-import { ActivityResult, CommitMsgResult } from './type';
-import { ACTIVE_DAYS, COMMIT_LEGAL_TARGET } from './config';
+import { ActivityResult, CommitMsgResult } from '../type';
+import { ACTIVE_DAYS, COMMIT_LEGAL_TARGET } from '../config';
 import path from 'path';
+import chalk from 'chalk';
 
 export function getContent(
   activityResult: ActivityResult,
@@ -36,9 +37,9 @@ function getActivityResultText(activityResult: ActivityResult) {
 function getCommitMsgResultText(commitMsgResult: CommitMsgResult) {
   const conclusion = commitMsgResult.pass ? '检测通过' : '检测不通过';
   const numText = `近期提交记录数量：${commitMsgResult.num};合格数量：${commitMsgResult.legalNum};不合格数量：${commitMsgResult.illegalNum}`;
-  const percentText = `当前通过率：${
+  const percentText = `当前通过率：${(
     commitMsgResult.legalPercent * 100
-  }%;目标通过率：${COMMIT_LEGAL_TARGET * 100}%`;
+  ).toFixed(0)}%;目标通过率：${COMMIT_LEGAL_TARGET * 100}%`;
   const listText = commitMsgResult.list
     .map(
       (item) =>
@@ -54,13 +55,13 @@ function getCommitMsgResultText(commitMsgResult: CommitMsgResult) {
 }
 
 export function writeMarkdown(content: string, name: string) {
-  const dirName = path.resolve(__dirname, 'md');
+  const dirName = path.resolve(__dirname, '..', 'md');
   if (!existsSync(dirName)) {
     mkdirSync(dirName);
   }
   const fileName = `${name}.md`;
   const filePath = path.resolve(dirName, fileName);
   writeFileSync(filePath, content);
-  console.log(`${fileName} 生成成功！`);
+  console.log(chalk.green(`${fileName} 生成成功！`));
   return filePath;
 }

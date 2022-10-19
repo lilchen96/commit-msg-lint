@@ -1,17 +1,17 @@
 /*
  * @Author: chenzihan
  * @Date: 2022-09-26 10:39:50
- * @LastEditTime: 2022-09-28 17:52:20
+ * @LastEditTime: 2022-10-19 14:48:26
  * @LastEditors: chenzihan
  * @Description:
  * @FilePath: \commit-msg-lint\src\config.ts
  */
 // 活跃度的判断（x天内有提交记录为活跃，x天内无提交记录为不活跃）
-export const ACTIVE_DAYS = 5 * 365;
+export const ACTIVE_DAYS = 14;
 // 审核的提交记录数量（取近x条记录）
-export const COMMIT_MAX_NUM = 100;
+export const COMMIT_MAX_NUM = 50;
 // 审核的提交记录数量时间范围（取近x时间的记录）格式例如：1_month   1_day   1_year  1_week
-export const COMMIT_TIME_RANGE = '5_year';
+export const COMMIT_TIME_RANGE = '1_month';
 // 提交记录通过率目标
 export const COMMIT_LEGAL_TARGET = 0.75;
 
@@ -22,12 +22,12 @@ export const CHECK_FUN = (
   error: string;
   legal: boolean;
 } => {
-  const regex = /([a-z]+)(\(.+\))?: (.+)/;
+  const regex = /^([a-z]+)(\(.+\))?: (.+)/;
   const regexAns = regex.exec(msg);
   let type = '',
     module = '',
     value = '',
-    errorList = [],
+    errorList: string[] = [],
     error = '',
     legal = true;
   if (regexAns) {
@@ -57,29 +57,98 @@ export const CHECK_FUN = (
   };
 };
 
-// 待检测的项目集合
+//检测的项目集合(generate:excel)
 export const PROJECT_LIST = [
   {
-    name: 'commit-msg-lint',
-    url: 'https://github.com/lilchen96/commit-msg-lint.git',
-    link: 'https://github.com/lilchen96/commit-msg-lint',
+    url: 'https://git2.aegis-info.com/goahan/tj_law_firm',
   },
   {
-    name: 'vue-component-cli',
-    url: 'https://github.com/lilchen96/vue-component-cli.git',
-    link: 'https://github.com/lilchen96/vue-component-cli',
+    url: 'https://git2.aegis-info.com/liyubo/contract-review',
   },
   {
-    name: 'music-cloud',
-    url: 'https://github.com/lilchen96/music-cloud.git',
-    link: 'https://github.com/lilchen96/music-cloud',
+    url: 'https://git2.aegis-info.com/court/intelligent-delivery',
   },
   {
-    name: 'vite-vue3-typescript-template',
-    url: 'https://github.com/lilchen96/vite-vue3-typescript-template.git',
-    link: 'https://github.com/lilchen96/vite-vue3-typescript-template',
-  }
+    url: 'https://git2.aegis-info.com/court/intelligent-delivery-intranet',
+  },
+  {
+    url: 'https://git2.aegis-info.com/chensi/police-map',
+  },
+  {
+    url: 'https://git2.aegis-info.com/muyuwen/400-Shunt-System',
+  },
+  {
+    url: 'https://git2.aegis-info.com/shaowei/little-law-butler',
+  },
+  {
+    url: 'https://git2.aegis-info.com/shanghai/front-end/yidian-system-v2',
+  },
+  {
+    url: 'https://git2.aegis-info.com/YangDan/Judgment_document',
+  },
+  {
+    url: 'https://git2.aegis-info.com/chenzihan/i-mediate',
+  },
+  {
+    url: 'https://git2.aegis-info.com/liyubo/straddle-end',
+  },
+  {
+    url: 'https://git2.aegis-info.com/15205176399/icontractreviewpcpc',
+  },
+  {
+    url: 'https://git2.aegis-info.com/liyubo/trafficmanagement',
+  },
+  {
+    url: 'https://git2.aegis-info.com/java-group/financial-dispute-mediation-fe',
+  },
+  {
+    url: 'https://git2.aegis-info.com/guangzhou/consult_online_client',
+  },
+  {
+    url: 'https://git2.aegis-info.com/guangzhou/consult_online_manage',
+  },
+  {
+    url: 'https://git2.aegis-info.com/xuzhile/jd-h5',
+  },
+  {
+    url: 'https://git2.aegis-info.com/SolutionCenterProjects/court-arrangement-system',
+  },
+  {
+    url: 'https://git2.aegis-info.com/tool/tool_manage',
+  },
+  {
+    url: 'https://git2.aegis-info.com/guangzhou/consult_online_client_mul',
+  },
+  {
+    url: 'https://git2.aegis-info.com/shanghai/front-end/electronic_iou_h5',
+  },
+  {
+    url: 'https://git2.aegis-info.com/yf-frontend-group/jd-management',
+  },
+  {
+    url: 'https://git2.aegis-info.com/shenzhen-gov-weixin/shenzhen-gov-wechat-fe',
+  },
+  {
+    url: 'https://git2.aegis-info.com/SolutionCenterProjects/wechat-video',
+  },
+  {
+    url: 'https://git2.aegis-info.com/wujie-integration-xiaofa-project/wujie-FE-xiaofa',
+  },
+  {
+    url: 'https://git2.aegis-info.com/guangzhou/gz_pufa',
+  },
+  {
+    url: 'https://git2.aegis-info.com/yf-frontend-group/jd-h5',
+  },
+  {
+    url: 'https://git2.aegis-info.com/qdy-yq/yqseoproduct',
+  },
+  {
+    url: 'https://git2.aegis-info.com/guangzhou/itegralexchangeweb',
+  },
 ];
 
-// 当前检测的项目的name
-export const PROJECT_NAME = 'commit-msg-lint';
+// 检测的项目的url(generate:md)
+export const PROJECT = {
+  url: 'https://git2.aegis-info.com/guangzhou/itegralexchangeweb',
+};

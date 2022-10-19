@@ -4,8 +4,9 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "tsc && cd dist && node index.js",
-    "lint": "tsc && cd dist && node commander.js lint"
+    "generate:md": "tsc && cd dist && node generateMd/index.js",
+    "generate:excel": "tsc && cd dist && node generateExcel/index.js",
+    "lint": "tsc && cd dist && node commander/index.js lint"
   },
   "author": "",
   "license": "ISC",
@@ -15,8 +16,10 @@
     "typescript": "^4.8.3"
   },
   "dependencies": {
+    "chalk": "4.x",
     "commander": "^9.4.0",
     "dayjs": "^1.11.5",
+    "exceljs": "^4.3.0",
     "inquirer": "^8.0.0"
   }
 }

@@ -1,16 +1,16 @@
 /*
  * @Author: chenzihan
  * @Date: 2022-09-26 10:18:29
- * @LastEditTime: 2022-09-28 16:22:33
+ * @LastEditTime: 2022-10-17 15:42:17
  * @LastEditors: chenzihan
  * @Description:
- * @FilePath: \commit-msg-lint\src\checkActivity.ts
+ * @FilePath: \commit-msg-lint\src\core\checkActivity.ts
  */
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import dayjs from 'dayjs';
-import { ACTIVE_DAYS } from './config';
-import { ActivityResult, ActivityResultItem } from './type';
+import { ACTIVE_DAYS } from '../config';
+import { ActivityResult, ActivityResultItem } from '../type';
 
 const execPromise = promisify(exec);
 
